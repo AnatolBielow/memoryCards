@@ -1,0 +1,72 @@
+
+body {
+    background: url(./img/milky-way-2695569_1920.jpg) center top fixed no-repeat;
+}
+h1 {
+    color: gold;
+    text-align: center;
+    font-family: 'Architects Daughter', cursive;;
+}
+.container {
+    max-width: 1320px;
+    margin: 0, auto;
+}
+.game .container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.card {
+    width: 200px;
+    height: 300px;
+    margin: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    background: #000 url(./img/card.jpg) center bottom no-repeat;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    border: 3px solid grey;
+    border-radius: 15px;
+    transition: all 300ms;
+}
+
+.card:hover {
+    border-color: gold;
+}
+
+.ashoka {
+    background-image: url(./img/ashoka.png);
+}
+.cavan {
+    background-image: url(./img/cavan.png);
+}
+.mandalorian {
+    background-image: url(./img/mandalorian.png);
+}
+.obiwan {
+    background-image: url(./img/obiwan.png);
+}
+.repeta {
+    background-image: url(./img/repeta.png);
+}
+.rey {
+    background-image: url(./img/rey.png);
+}
+.yim {
+    background-image: url(./img/yim.png);
+}
+.yoda {
+    background-image: url(./img/yoda.png);
+}
+.hidden {
+    background: #000 url(./img/card.jpg) center bottom no-repeat;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.off {
+    background: none;
+    border: none;
+}
