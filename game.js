@@ -39,7 +39,7 @@ doubleCards.forEach(card =>{
     })
 };
 
-let activeCard = ""; //która karta została aktualnie kliknięta
+let activeCard = ""; //ktĂłra karta zostaĹa aktualnie klikniÄta
 const activeCards = [];
    
 const gameLength = cards.length / 2;
@@ -48,30 +48,30 @@ let gameResult = 0;
 
  const clickCard = function () {
 
-     activeCard = this; //w co zostało kliknięte
+     activeCard = this; //w co zostaĹo klikniÄte
      console.log(this.target) //o ile przekazane event to to samo co this
 
-     //czy to kliknięcie w ten sam element (tylko drugi może dać true) Musi być przed ukryciem dodane
+     //czy to klikniÄcie w ten sam element (tylko drugi moĹźe daÄ true) Musi byÄ przed ukryciem dodane
      if (activeCard == activeCards[0]) return;
 
-     activeCard.classList.remove("hidden"); //ukrycie karty, która została kliknięta
+     activeCard.classList.remove("hidden"); //ukrycie karty, ktĂłra zostaĹa klikniÄta
 
-     //czy to 1 kliknięcie, czy tablica ma długość 0
+     //czy to 1 klikniÄcie, czy tablica ma dĹugoĹÄ 0
      if (activeCards.length === 0) {
          console.log("1 element");
          activeCards[0] = activeCard; //przypisanie do pozycji numer 1 wybranej karty
          return;
 
      }
-     //czy to 2 kliknięcie - else bo jeśli nie pierwsze, to drugie
+     //czy to 2 klikniÄcie - else bo jeĹli nie pierwsze, to drugie
      else {
          console.log("2 element");
-         //na chwilę zdejmujemy możliwość kliknięcie 
+         //na chwilÄ zdejmujemy moĹźliwoĹÄ klikniÄcie 
          cards.forEach(card => card.removeEventListener("click", clickCard))
-         //ustawienie drugiego kliknięcia w tablicy w indeksie 1
+         //ustawienie drugiego klikniÄcia w tablicy w indeksie 1
          activeCards[1] = activeCard;
 
-         //Pół sekundy od odsłoniecia - decyzja czy dobrze czy źle
+         //PĂłĹ sekundy od odsĹoniecia - decyzja czy dobrze czy Ĺşle
          setTimeout(function () {
              //sprawdzenie czy to te same karty - wygrana
              if (activeCards[0].className === activeCards[1].className) {
@@ -79,12 +79,22 @@ let gameResult = 0;
                  activeCards.forEach(card => card.classList.add("off"))
                  gameResult++;
                  cards = cards.filter(card => !card.classList.contains("off"));
-                 //Sprawdzenie czy nastąpił koniec gry
+                 //Sprawdzenie czy nastÄpiĹ koniec gry
                  if (gameResult == gameLength) {
                      const endTime = new Date().getTime();
-                     const gameTime = (endTime - startTime) / 1000
-                     alert(`Udało się! Twój wynik to: ${gameTime} sekund`)
-                     location.reload();
+                     const gameTime = (endTime - startTime) / 1000; 
+                     console.log({gameTime});
+                     const timeAlert = document.querySelector("h2");
+                     //const title = document.querySelector(".article .title");
+                    //title.innerHTML = 'New and <span class="accent">improved</span> title';
+                     timeAlert.innerHTML = `Congratulations! You win!!! Your time is <br>  ${gameTime} sec`;
+                     const button = document.getElementById('button');
+                    button.classList.remove("is-hidden");
+                 
+                    button.onclick = function() {
+                    location.reload()};
+
+                    
                  }
              }
              //przegrana. ponowne ukrycie
@@ -94,8 +104,8 @@ let gameResult = 0;
              }
              //Reset do nowej gry
              activeCard = ""; //aktywna karta pusta
-             activeCards.length = 0; //długość tablicy na zero
-             cards.forEach(card => card.addEventListener("click", clickCard))//przywrócenie nasłuchiwania
+             activeCards.length = 0; //dĹugoĹÄ tablicy na zero
+             cards.forEach(card => card.addEventListener("click", clickCard))//przywrĂłcenie nasĹuchiwania
 
          }, 500)
      }
@@ -103,6 +113,5 @@ let gameResult = 0;
 
 
 init()
-
 
 
