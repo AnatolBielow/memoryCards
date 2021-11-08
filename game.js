@@ -1,48 +1,155 @@
-const cardsPhoto = ["ashoka", "cavan", "mandalorian", "obiwan", "repeta", "rey", "yim", "yoda"];
-let cardsPhotoRandom = [...cardsPhoto];
+import {images} from './photos.js'
 
-let cards = document.getElementsByClassName("card");
-cards = [...cards];
+let imagesArray = images;
+let level = 0; //liczba par
+let sameCards = 0; 
+console.log(imagesArray)
 
-let doubleCards = [];
-let cardsArray = [];
+ //tablica ze wszystkimi obrazkami
+const cardsContainer = document.querySelector('.cards__container');
+
+ function choseGame() {
+     let gameLevel = [
+         {a:3, b:2},
+         {a:4, b:2},
+         {a:5, b:2},
+         {a:6, b:2},
+         {a:7, b:2},
+         {a:8, b:2},
+         {a:9, b:2},
+         {a:7, b:3},
+         {a:8, b:3}
+    ];
+    
+    gameLevel = [...gameLevel]
+     const markup = gameLevel.map(item => 
+
+        `<button class = "level__btn" data-length = "${item.a}" data-same_cards="${item.b}">${item.a} X ${item.b}</button>`
+    ).join("");
+
+    cardsContainer.insertAdjacentHTML('afterbegin', markup);
+    
+    cardsContainer.addEventListener('click', choseLevel);
+
+    function choseLevel(event) {
+        if(event.target === event.currentTarget) {return};
+       
+             level=event.target.dataset.length;
+        
+            sameCards=event.target.dataset.same_cards;
+            cardsContainer.innerHTML = ""; //wyrzucamy przyciski
+       }
+    }
+
+     
+//funkcja losujaca, przyjmuje tablice i do nowej wstawia wylosowane elementy
+const randomizer = (array, newArray) => {
+    array = [...array];
+    const arrayLength = array.length;
+    while (arrayLength > newArray.length) {
+        array.forEach(element => {
+        const index = Math.floor(Math.random() * array.length);
+        newArray.push(array[index]);
+        array.splice(index, 1);
+
+  return newArray;   
+   })
+}
+}
+
+
+
+function createCardsContainer (items) {
+    const markup = items.map(item =>
+         `<div class="card">
+<a class="card__link" href="">
+  <img
+    class="card__image"
+    src="${item.img}"
+    alt=""
+  />
+</a>
+</div>
+`).join("");
+    cardsContainer.insertAdjacentHTML('afterbegin', markup);
+}
+
+const init = () => {
+    choseGame();
+
+    cardsContainer.addEventListener('click', createGame)
+
+    function createGame(event)  {
+        if(event.target===event.currentTarget) {return};
+        let allImagesRandom = []; 
+    //losujemy wszystkie obrazki
+    
+    randomizer(imagesArray, allImagesRandom);
+    
+    console.log(allImagesRandom)
+    
+    //skracamy do poziomu gry (par) kart, podwajamy albo potrajamy i losujemy jeszcze raz
+    
+    let allCards = [];  
+    let allCardsRandom = []; 
+    
+    allImagesRandom.splice(level);
+    
+     allCards = allImagesRandom.concat(allImagesRandom);
+     if(sameCards===3) {
+        allCards = allCards.concat(allImagesRandom);
+     }
+    
+    randomizer(allCards, allCardsRandom);  
+    
+    console.log(allCardsRandom);
+    
+    //dodajemy do gry kontenery z wylosowanymi obrazkami
+    createCardsContainer(allCardsRandom);
+    
+    };
+
+
+
+
+
+cardsContainer.removeEventListener('click', createGame);
+
+
+const cards = document.querySelectorAll('.card');
+
+cards.forEach(card => {
+    card.classList.add('is-hidden')
+ card.addEventListener('click', miniGame)   
+});
+
+
+const miniGame = () =>{
+    console.log(hahghj)
+}
+
+}
+
+
+
+ init()  
 
 const startTime = new Date().getTime(); 
 
-const init = () => {
-while (cardsPhoto.length > cardsArray.length) {
-cardsPhotoRandom.forEach(card => {
-    const index = Math.floor(Math.random() * cardsPhotoRandom.length);
-    cardsArray.push(cardsPhotoRandom[index]);
-    cardsPhotoRandom.splice(index, 1);
-console.log(cardsArray);
-})
-}
-cardsArray.splice(6);
-doubleCards = cardsArray.concat(cardsArray);
+//
 
-console.log(doubleCards);
-doubleCards.forEach(card =>{
-    const position = Math.floor(Math.random() *  doubleCards.length);
-});
- cards.forEach(card => {
-        const position = Math.floor(Math.random() * doubleCards.length);
-        card.classList.add(doubleCards[position]);
-        doubleCards.splice(position, 1);
-    });
+//     setTimeout(function () {
+//          cards.forEach(card => {
+//              card.classList.add("hidden")
+//              card.addEventListener("click", clickCard)
+//          })
+//     })
+// };
 
-    setTimeout(function () {
-         cards.forEach(card => {
-             card.classList.add("hidden")
-             card.addEventListener("click", clickCard)
-         })
-    })
-};
-
-let activeCard = ""; //ktĂłra karta zostaĹa aktualnie klikniÄta
+let activeCard = ""; 
 const activeCards = [];
    
-const gameLength = cards.length / 2;
+//const gameLength = cards.length / 2;
 
 let gameResult = 0;
 
@@ -78,6 +185,7 @@ let gameResult = 0;
                  console.log("wygrane")
                  activeCards.forEach(card => card.classList.add("off"))
                  gameResult++;
+                 console.log(gameResult);
                  cards = cards.filter(card => !card.classList.contains("off"));
                  //Sprawdzenie czy nastÄpiĹ koniec gry
                  if (gameResult == gameLength) {
@@ -109,9 +217,8 @@ let gameResult = 0;
 
          }, 500)
      }
- };
+    }
 
 
-init()
-
-
+ 
+//init()
