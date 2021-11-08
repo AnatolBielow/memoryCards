@@ -7,5 +7,5 @@ export const images = [
     {img: './img/rey.png'},
     {img: './img/yim.png'},
     {img: './img/yoda.png'},
-    {img: './img.card.png'}
+    {img: './img/card.jpg'}
 ]
