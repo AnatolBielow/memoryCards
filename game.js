@@ -20,7 +20,11 @@ const cardsContainer = document.querySelector('.cards__container');
     gameLevel = [...gameLevel];
 
     const markup = gameLevel.map(item => 
-        `<button class = "level__btn" data-length = "${item.a}" data-same_cards="${item.b}">${item.a} X ${item.b}</button>`
+        `<button class = "level__btn" data-length = "${item.a}" data-same_cards="${item.b}">${item.a} X ${item.b}
+        <svg>
+            <use href="./img/2cards.svg" style="fill:red;stroke:black"></use>
+        </svg>
+        </button>`
     ).join("");
     
 
