@@ -1,11 +1,16 @@
 export const images = [
-    {img: './img/ashoka.png'},
-    {img: './img/cavan.png'},
-    {img: './img/mandalorian.png'},
-    {img: './img/obiwan.png'},
-    {img: './img/repeta.png'},
-    {img: './img/rey.png'},
-    {img: './img/yim.png'},
-    {img: './img/yoda.png'},
-    {img: './img/card.jpg'}
+    {img: './img/android.jpg'},
+    {img: './img/ashoka.jpg'},
+    {img: './img/chewbacca.jpg'},
+    {img: './img/hansolo.jpg'},
+    {img: './img/cavan.jpg'},
+    {img: './img/mandalorian.jpg'},
+    {img: './img/leila.jpg'},
+    {img: './img/obiwan.jpg'},
+    {img: './img/repeta.jpg'},
+    {img: './img/rey.jpg'},
+    {img: './img/robot.jpg'},
+    {img: './img/skywalker.jpg'},
+    {img: './img/yim.jpg'},
+    {img: './img/yoda.jpg'}
 ]

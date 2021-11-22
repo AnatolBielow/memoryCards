@@ -196,6 +196,7 @@ function endGame() {
     buttonReset.addEventListener('click', reset)
 }
 
+
 choseGame()
 
 const startTime = new Date().getTime(); 
