@@ -190,7 +190,7 @@ function endGame() {
     const endTime = new Date().getTime();
     const gameTime = (endTime - startTime) / 1000; 
     console.log(`${gameTime}`);
-    timeAlert.innerHTML = `Congratulations! You win!!! Your time is <br>  ${gameTime} sec`;
+    timeAlert.innerHTML = `Congratulations! You win!!! Your time is <br><span class="accent"> ${gameTime} sec</span>`;
     cardsContainer.innerHTML = `<button class="button button-reset" id="button">One more time?</button>`;
     const buttonReset = document.querySelector('.button.button-reset');
     buttonReset.addEventListener('click', reset)
