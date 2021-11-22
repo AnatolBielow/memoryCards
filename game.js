@@ -1,4 +1,4 @@
-import {images} from '/photos.js'
+import {images} from './photos.js'
 
 let imagesArray = images;
 let level = 0; //liczba par
